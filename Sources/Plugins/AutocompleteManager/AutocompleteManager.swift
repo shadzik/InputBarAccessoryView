@@ -108,7 +108,7 @@ open class AutocompleteManager: NSObject, InputPlugin, UITextViewDelegate, UITab
         return [.font: UIFont.preferredFont(forTextStyle: .body), .foregroundColor: foregroundColor]
     }()
 
-    open var defaultParagraphStyle: NSMutableParagraphStyle = paragraphStyle
+    open var defaultParagraphStyle: NSMutableParagraphStyle?
     
     /// The NSAttributedString.Key.paragraphStyle value applied to attributed strings
     public let paragraphStyle: NSMutableParagraphStyle = {
@@ -143,7 +143,7 @@ open class AutocompleteManager: NSObject, InputPlugin, UITextViewDelegate, UITab
         var attributes = defaultTextAttributes
         attributes[.autocompleted] = false
         attributes[.autocompletedContext] = nil
-        attributes[.paragraphStyle] = defaultParagraphStyle
+        attributes[.paragraphStyle] = defaultParagraphStyle ?? paragraphStyle
         return attributes
     }
     
@@ -231,7 +231,7 @@ open class AutocompleteManager: NSObject, InputPlugin, UITextViewDelegate, UITab
     open func register(prefix: String, with attributedTextAttributes: [NSAttributedString.Key:Any]? = nil) {
         autocompletePrefixes.insert(prefix)
         autocompleteTextAttributes[prefix] = attributedTextAttributes
-        autocompleteTextAttributes[prefix]?[.paragraphStyle] = defaultParagraphStyle
+        autocompleteTextAttributes[prefix]?[.paragraphStyle] = defaultParagraphStyle ?? paragraphStyle
     }
     
     /// Unregisters a prefix and removes its associated cached attributes
