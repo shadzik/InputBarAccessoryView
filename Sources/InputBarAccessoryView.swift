@@ -98,6 +98,12 @@ open class InputBarAccessoryView: UIView {
         return stackView
     }()
 
+    public let middleStackView: InputStackView = {
+        let stackView = InputStackView(axis: .vertical, spacing: 0)
+        stackView.alignment = .fill
+        return stackView
+    }()
+
     /**
      The InputStackView at the InputStackView.left position
 
@@ -438,8 +444,9 @@ open class InputBarAccessoryView: UIView {
         contentView.addSubview(leftStackView)
         contentView.addSubview(rightStackView)
         contentView.addSubview(bottomStackView)
-        middleContentViewWrapper.addSubview(inputTextView)
-        middleContentView = inputTextView
+        middleStackView.addArrangedSubview(inputTextView)
+        middleContentViewWrapper.addSubview(middleStackView)
+        middleContentView = middleStackView
         setStackViewItems([sendButton], forStack: .right, animated: false)
     }
 
@@ -479,6 +486,7 @@ open class InputBarAccessoryView: UIView {
         )
 
         inputTextView.fillSuperview()
+        middleStackView.fillSuperview()
         maxTextViewHeight = calculateMaxTextViewHeight()
         textViewHeightAnchor = inputTextView.heightAnchor.constraint(equalToConstant: maxTextViewHeight)
 
