@@ -446,7 +446,7 @@ open class InputBarAccessoryView: UIView {
         contentView.addSubview(bottomStackView)
         middleStackView.addArrangedSubview(inputTextView)
         middleContentViewWrapper.addSubview(middleStackView)
-        middleContentView = middleStackView
+        middleContentView = inputTextView
         setStackViewItems([sendButton], forStack: .right, animated: false)
     }
 
