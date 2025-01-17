@@ -301,9 +301,9 @@ open class InputBarAccessoryView: UIView {
 
     /// The height that will fit the current text in the InputTextView based on its current bounds
     public var requiredInputTextViewHeight: CGFloat {
-        guard middleContentView == inputTextView else {
-            return middleContentView?.intrinsicContentSize.height ?? 0
-        }
+//        guard middleContentView == inputTextView else {
+//            return middleContentView?.intrinsicContentSize.height ?? 0
+//        }
         let maxTextViewSize = CGSize(width: inputTextView.bounds.width, height: .greatestFiniteMagnitude)
         return inputTextView.sizeThatFits(maxTextViewSize).height.rounded(.down)
     }
