@@ -446,7 +446,7 @@ open class InputBarAccessoryView: UIView {
         contentView.addSubview(bottomStackView)
         middleStackView.addArrangedSubview(inputTextView)
         middleContentViewWrapper.addSubview(middleStackView)
-        middleContentView = inputTextView
+        middleContentView = middleStackView
         setStackViewItems([sendButton], forStack: .right, animated: false)
     }
 
@@ -485,8 +485,8 @@ open class InputBarAccessoryView: UIView {
             right:  middleContentViewWrapper.rightAnchor.constraint(equalTo: rightStackView.leftAnchor, constant: -middleContentViewPadding.right)
         )
 
-        inputTextView.fillSuperview()
         middleStackView.fillSuperview()
+        inputTextView.fillSuperview()
         maxTextViewHeight = calculateMaxTextViewHeight()
         textViewHeightAnchor = inputTextView.heightAnchor.constraint(equalToConstant: maxTextViewHeight)
 
@@ -592,9 +592,9 @@ open class InputBarAccessoryView: UIView {
                 inputTextView.invalidateIntrinsicContentSize()
             }
         }
-        if let middleContentView, middleContentView != inputTextView {
-            inputTextViewHeight = middleContentView.intrinsicContentSize.height
-        }
+//        if let middleContentView, middleContentView != inputTextView {
+//            inputTextViewHeight = middleContentView.intrinsicContentSize.height
+//        }
 
         // Calculate the required height
         let totalPadding = padding.top + padding.bottom + topStackViewPadding.top + middleContentViewPadding.top + middleContentViewPadding.bottom
@@ -607,7 +607,7 @@ open class InputBarAccessoryView: UIView {
 
     open override func layoutIfNeeded() {
         super.layoutIfNeeded()
-        inputTextView.layoutIfNeeded()
+        middleStackView.layoutIfNeeded()
     }
 
     open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
