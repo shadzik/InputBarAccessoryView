@@ -607,7 +607,7 @@ open class InputBarAccessoryView: UIView {
 
     open override func layoutIfNeeded() {
         super.layoutIfNeeded()
-        middleStackView.layoutIfNeeded()
+        inputTextView.layoutIfNeeded()
     }
 
     open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
